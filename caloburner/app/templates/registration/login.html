@@ -5,6 +5,20 @@
 {% endblock %}
 
 {% block body %}
+
+{% if page == 'register' %}
+<h1>Veuillez remplir ce formulaire d'inscription</h1>
+<form action="{% url 'register_user' %}" method="POST">
+  {% csrf_token %}
+  <div class="mb-3 pt-3">
+  {{form.as_p}}
+  </div>
+  <input type="submit" class="btn btn-secondary btn-sm" value="Valider">
+</form>
+<div class="mb-3 pt-3">
+  <p>Déjà inscrit?</p><a href="{% url 'login' %}" >Login</a>
+</div>
+{% else %}
   <div class="mt-5">
     <div class="row">
       <div class="col-md-6 offset-3">
@@ -17,16 +31,19 @@
               <input type="text" class="form-control" name="username" id="username">
             </div>
             <div class="mb-3">
-              <label for="inputPassword" class="col-form-label">Password</label>
+              <label for="password" class="col-form-label">Password</label>
               <input type="password" class="form-control" name="password" id="password">
             </div>
             <div class="mb-3 pt-3">
               <input type="submit" class="btn btn-secondary btn-sm" value="Login" id="btn-login">
+            </div>
+            <div class="mb-3 pt-3">
+              <p>Pas encore inscrit?</p><a href="{% url 'register_user' %}" >S'inscrire</a>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-
+{% endif %}
 {% endblock %}

@@ -1,8 +1,25 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_control
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 # Functions based views
+
+# User Registration
+
+
+def register_user(request):
+    form = UserCreationForm()
+    context = {'page': 'register', 'form': form}
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+
+    return render(request, 'registration/login.html', context)
 
 
 # Function to access the frontend
