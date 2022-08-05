@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block nav-btn %}
+    <a href="{% url 'frontend' %}" class="btn btn-outline-secondary btn-sm text-light border-light" id="btn-nav"><i class="fa-solid fa-rotate-left"></i>&nbsp; Accueil</a>
+{% endblock %}
+
+{% block body %}
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-3">
+        <div class="card p-3 border-dark">
+          <a href="" class="btn btn-secondary"><i class="fas fa-lock"></i>&nbsp; &nbsp; Accès refusé!!</a>
+          <form method="POST" autocomplete="off" class="mt-4" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="username" class="col-form-label">Username</label>
+              <input type="text" class="form-control" name="username" id="username">
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="col-form-label">Password</label>
+              <input type="password" class="form-control" name="password" id="password">
+            </div>
+            <div class="mb-3 pt-3">
+              <input type="submit" class="btn btn-secondary btn-sm" value="Login" id="btn-login">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
